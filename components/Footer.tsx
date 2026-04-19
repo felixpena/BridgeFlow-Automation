@@ -70,7 +70,7 @@ export default function Footer() {
             © {new Date().getFullYear()} BridgeFlow Automation. Todos los derechos reservados.
           </p>
           <p className="text-[12px] text-slate-700">
-            Automatización SAP · Python · Latinoamérica
+            Automatización SAP · Capa de Agilidad · Latinoamérica
           </p>
         </div>
       </div>

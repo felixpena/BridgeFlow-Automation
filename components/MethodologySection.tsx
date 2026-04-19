@@ -10,8 +10,8 @@ const steps = [
   {
     icon:   MousePointerClick,
     num:    "02",
-    title:  "Automatización de la Interfaz",
-    desc:   "Nuestros agentes navegan transacciones SAP (SE16, ME21N, FB50…), extraen los datos requeridos, los procesan con lógica Python y los entregan en el formato exacto: Excel, PDF, email automático o dashboard web.",
+    title:  "Capa de Ejecución Ágil",
+    desc:   "Nuestros agentes navegan transacciones SAP (SE16, ME21N, FB50…), extraen los datos requeridos, los procesan mediante nuestra arquitectura periférica y los entregan en el formato exacto: Excel, PDF, email automático o dashboard corporativo.",
   },
   {
     icon:   GitMerge,
@@ -28,7 +28,7 @@ const steps = [
 ];
 
 /* Visual pipeline data */
-const pipeline = ["SAP GUI", "BridgeFlow Agent", "Python Engine", "Output"];
+const pipeline = ["Proceso SAP", "BridgeFlow Layer", "Motor de Automatización", "Resultado Operativo"];
 
 export default function MethodologySection() {
   return (
@@ -81,7 +81,7 @@ export default function MethodologySection() {
             {/* Pipeline diagram */}
             <div
               className="flex-shrink-0 flex flex-wrap items-center gap-2 font-mono text-[12px]"
-              aria-label="Flujo de datos: SAP GUI → BridgeFlow Agent → Python Engine → Output"
+              aria-label="Flujo de datos: Proceso SAP → BridgeFlow Layer → Motor de Automatización → Resultado Operativo"
             >
               {pipeline.map((node, i) => (
                 <span key={node} className="flex items-center gap-2">
@@ -105,10 +105,11 @@ export default function MethodologySection() {
             <div className="lg:border-l lg:border-slate-200 lg:pl-8">
               <p className="text-slate-600 text-[0.9375rem] leading-relaxed">
                 <strong className="text-slate-900 font-semibold">
-                  Sin SDKs propietarios. Sin APIs que SAP cobre por llamada.
+                  Sin dependencia de un stack específico. Sin vendor lock-in.
                 </strong>{" "}
-                Cada automatización está construida en Python puro, con dependencias
-                mínimas y documentación completa. Usted recibe el código, no una caja negra.
+                BridgeFlow construye una capa de software que envuelve la rigidez de SAP
+                priorizando la seguridad, la velocidad de entrega y la auditabilidad total.
+                Usted recibe una solución documentada, no una dependencia opaca.
               </p>
               <a
                 href="#contacto"

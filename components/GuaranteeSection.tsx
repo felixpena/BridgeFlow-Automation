@@ -1,22 +1,22 @@
-import { Code2, LayoutDashboard, BookOpenCheck, Users2 } from "lucide-react";
+import { Code2, LayoutDashboard, ShieldCheck, Users2 } from "lucide-react";
 
 const pillars = [
   {
     icon:   Code2,
-    title:  "Código Limpio y Auditable",
-    desc:   "Cada script entregado sigue estándares de codificación corporativa: documentado, versionado en Git y estructurado para que cualquier desarrollador interno pueda leerlo, mantenerlo y extenderlo. Sin lógica oculta ni dependencias externas críticas.",
+    title:  "Arquitectura Auditable y Transparente",
+    desc:   "Cada componente entregado sigue estándares de ingeniería corporativa: documentado, versionado en control de fuente y estructurado para que cualquier equipo técnico interno pueda leerlo, mantenerlo y extenderlo. Sin lógica oculta. Sin dependencias críticas externas.",
     color:  "bg-blue-50 border-blue-100 text-blue-600",
   },
   {
     icon:   LayoutDashboard,
     title:  "Interfaces Modernas (UI/UX Corporativa)",
-    desc:   "Cuando el proceso lo requiere, construimos interfaces web internas con diseño enterprise — no formularios de consola ni macros visuales. Sus equipos operan sobre herramientas que se ven y comportan como aplicaciones profesionales.",
+    desc:   "Cuando el proceso lo requiere, construimos interfaces web internas con diseño enterprise — herramientas que sus equipos adoptan sin fricción porque se ven y operan como productos SaaS de primer nivel, no como soluciones provisionales.",
     color:  "bg-cyan-50 border-cyan-100 text-cyan-600",
   },
   {
-    icon:   BookOpenCheck,
-    title:  "Documentación Técnica Entregable",
-    desc:   "Al cierre de cada proyecto recibe un dossier técnico completo: arquitectura del flujo, manual de operación, procedimiento de recuperación ante fallos y guía de mantenimiento. Su empresa retiene el conocimiento, no solo el resultado.",
+    icon:   ShieldCheck,
+    title:  "Ciberseguridad Corporativa Integrada",
+    desc:   "Cada solución cumple con estándares de seguridad de nivel enterprise: cifrado de credenciales, principio de mínimo privilegio, operación dentro del perímetro de red existente y sin exposición de datos sensibles fuera de los sistemas autorizados.",
     color:  "bg-violet-50 border-violet-100 text-violet-600",
   },
   {
@@ -28,12 +28,12 @@ const pillars = [
 ];
 
 const standards = [
-  "Python 3.10+ con type hints estrictos",
-  "Versionado Git con historial completo",
-  "Logs de ejecución estructurados (JSON)",
-  "Variables de entorno para credenciales",
-  "Documentación en Markdown / Confluence",
-  "Pruebas unitarias incluidas",
+  "Arquitectura portable e independiente de stack",
+  "Control de versiones con historial de cambios",
+  "Logs de auditoría estructurados y trazables",
+  "Gestión segura de credenciales (zero hardcoding)",
+  "Documentación técnica y operativa completa",
+  "Validaciones y pruebas de regresión incluidas",
 ];
 
 export default function GuaranteeSection() {
@@ -48,15 +48,15 @@ export default function GuaranteeSection() {
             id="garantias-heading"
             className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-slate-900 leading-tight tracking-tight"
           >
-            Entregamos software.
+            Entregamos soluciones de nivel enterprise.
             <br />
-            <span className="text-cyan-600">No macros de Excel.</span>
+            <span className="text-cyan-600">No parches temporales.</span>
           </h2>
           <p className="mt-5 text-slate-500 text-lg leading-relaxed">
-            La percepción de fragilidad asociada a la automatización periférica de SAP nace
-            de soluciones improvisadas. Nuestro estándar de entrega{" "}
+            El valor de BridgeFlow no está en las herramientas que usamos — está en el puente
+            estratégico que construimos. Cada entrega es{" "}
             <strong className="text-slate-700 font-semibold">
-              elimina esa percepción con evidencia técnica.
+              auditable, segura y diseñada para durar.
             </strong>
           </p>
         </header>
