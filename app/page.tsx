@@ -1,20 +1,20 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import ProblemSection from "@/components/ProblemSection";
-import SolutionSection from "@/components/SolutionSection";
-import ROISection from "@/components/ROISection";
-import ContactForm from "@/components/ContactForm";
-import Footer from "@/components/Footer";
+import Navbar            from "@/components/Navbar";
+import Hero              from "@/components/Hero";
+import PainSection       from "@/components/PainSection";
+import MethodologySection from "@/components/MethodologySection";
+import GuaranteeSection  from "@/components/GuaranteeSection";
+import ContactSection    from "@/components/ContactSection";
+import Footer            from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main>
       <Navbar />
       <Hero />
-      <ProblemSection />
-      <SolutionSection />
-      <ROISection />
-      <ContactForm />
+      <PainSection />
+      <MethodologySection />
+      <GuaranteeSection />
+      <ContactSection />
       <Footer />
     </main>
   );

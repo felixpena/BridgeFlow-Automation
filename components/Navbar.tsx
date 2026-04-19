@@ -1,99 +1,96 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Zap, Menu, X } from "lucide-react";
+import { Menu, X, Zap } from "lucide-react";
+
+const links = [
+  { label: "El Problema",    href: "#problema"    },
+  { label: "Metodología",    href: "#metodologia" },
+  { label: "Garantías",      href: "#garantias"   },
+  { label: "Contacto",       href: "#contacto"    },
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const navLinks = [
-    { label: "El Problema", href: "#problema" },
-    { label: "Solución", href: "#solucion" },
-    { label: "ROI", href: "#roi" },
-    { label: "Contacto", href: "#contacto" },
-  ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0f172a]/95 backdrop-blur-md border-b border-white/5 shadow-lg"
+          ? "bg-[#040C18]/90 backdrop-blur-xl border-b border-[#1A2840]"
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-            <Zap size={16} className="text-white" strokeWidth={2.5} />
-          </div>
-          <span className="font-bold text-white text-lg tracking-tight">
+      <div className="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between">
+
+        {/* ── Logo ── */}
+        <a href="#" className="flex items-center gap-2.5 group select-none">
+          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-core to-blue-mid flex items-center justify-center shadow-lg shadow-blue-core/30">
+            <Zap size={13} className="text-white" strokeWidth={2.8} />
+          </span>
+          <span className="font-bold text-[15px] tracking-tight text-snow">
             BridgeFlow
-            <span className="text-gradient-emerald ml-1">Automation</span>
+            <span className="text-blue-grad ml-[3px]">Automation</span>
           </span>
         </a>
 
-        {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            </li>
+        {/* ── Desktop nav ── */}
+        <nav className="hidden md:flex items-center gap-7">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-sm font-medium text-platinum hover:text-snow transition-colors"
+            >
+              {l.label}
+            </a>
           ))}
-        </ul>
+        </nav>
 
-        {/* CTA Desktop */}
-        <a
-          href="#contacto"
-          className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white text-sm font-semibold shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105"
-        >
-          Solicitar Demo
+        {/* ── CTA ── */}
+        <a href="#contacto" className="hidden md:inline-flex btn-primary text-sm py-2.5 px-5">
+          Solicitar Diagnóstico
         </a>
 
-        {/* Mobile menu button */}
+        {/* ── Hamburger ── */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-slate-400 hover:text-white transition-colors"
-          aria-label="Toggle menu"
+          className="md:hidden text-platinum hover:text-snow transition-colors"
+          aria-label="Menú"
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
-      </nav>
+      </div>
 
-      {/* Mobile menu */}
+      {/* ── Mobile drawer ── */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0f172a]/98 backdrop-blur-md border-b border-white/5 px-6 pb-6">
-          <ul className="flex flex-col gap-4 pt-4">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+        <div className="md:hidden bg-[#0B1426]/98 backdrop-blur-xl border-b border-[#1A2840] px-6 pb-6">
+          <ul className="flex flex-col gap-1 pt-3">
+            {links.map((l) => (
+              <li key={l.href}>
                 <a
-                  href={link.href}
+                  href={l.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block text-slate-300 hover:text-white transition-colors py-1"
+                  className="block py-3 text-sm font-medium text-platinum hover:text-snow transition-colors border-b border-[#111D33]"
                 >
-                  {link.label}
+                  {l.label}
                 </a>
               </li>
             ))}
-            <li>
+            <li className="pt-4">
               <a
                 href="#contacto"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex w-full justify-center items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white text-sm font-semibold mt-2"
+                className="btn-primary w-full justify-center text-sm"
               >
-                Solicitar Demo
+                Solicitar Diagnóstico
               </a>
             </li>
           </ul>

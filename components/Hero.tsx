@@ -1,121 +1,105 @@
-"use client";
-
-import { ArrowRight, ChevronDown, TrendingUp, Shield, Clock } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-grid">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f2027]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
 
-      {/* Decorative lines */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent" />
-        <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/8 to-transparent" />
+      {/* ── Background layers ── */}
+      <div className="absolute inset-0 bg-canvas" />
+      <div className="absolute inset-0 bg-dots opacity-60" />
+
+      {/* Radial blue bloom */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 55% at 50% 38%, rgba(29,111,239,0.09) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Hairline horizontal lines */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[38%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-border/20 to-transparent" style={{"--tw-border-opacity":"1"} as React.CSSProperties} />
+        <div
+          className="absolute top-[38%] left-0 right-0 h-px"
+          style={{ background: "linear-gradient(90deg, transparent, rgba(29,111,239,0.12), transparent)" }}
+        />
+        <div
+          className="absolute top-[62%] left-0 right-0 h-px"
+          style={{ background: "linear-gradient(90deg, transparent, rgba(29,111,239,0.06), transparent)" }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-16">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-widest mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Automatización Empresarial de Próxima Generación
-          </div>
+      {/* ── Content ── */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-20 flex flex-col items-center text-center">
 
-          {/* Main headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6">
-            Elimine los{" "}
-            <span className="text-gradient-emerald">Excel-SAP Loops</span>
-            <br />
-            que consumen el tiempo
-            <br />
-            de su equipo.
-          </h1>
+        {/* Eyebrow */}
+        <div className="label-chip mb-8 animate-fade-in" style={{ animationDelay: "0.05s" }}>
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-bright animate-pulse" />
+          Automatización SAP No Invasiva
+        </div>
 
-          {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-4">
-            Sus analistas no deberían pasar los viernes cruzando datos a mano.{" "}
-            <span className="text-slate-200 font-medium">
-              BridgeFlow automatiza cada puente entre SAP y Excel en segundos,
-            </span>{" "}
-            sin tocar la infraestructura central de IT.
-          </p>
-          <p className="text-base text-slate-500 mb-12">
-            Automatización no invasiva · Retorno de Inversión Inmediato · Shadow IT seguro
-          </p>
+        {/* Headline */}
+        <h1
+          className="text-4xl sm:text-5xl lg:text-6xl xl:text-[68px] font-extrabold text-snow leading-[1.06] tracking-[-0.02em] max-w-4xl animate-fade-up"
+          style={{ animationDelay: "0.1s" }}
+        >
+          Libere su operación
+          <br />
+          de la{" "}
+          <span className="text-blue-grad">rigidez de SAP</span>.
+        </h1>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a
-              href="#contacto"
-              className="group flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold text-base shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/45 transition-all duration-300 hover:scale-105"
-            >
-              Agenda una Demo Ejecutiva
-              <ArrowRight
-                size={18}
-                className="group-hover:translate-x-1 transition-transform duration-200"
-              />
-            </a>
-            <a
-              href="#roi"
-              className="flex items-center gap-2 px-8 py-4 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-white/25 transition-all duration-300 text-base font-medium"
-            >
-              Ver Comparativa de ROI
-            </a>
-          </div>
+        {/* Subheadline */}
+        <p
+          className="mt-7 text-lg sm:text-xl text-platinum leading-relaxed max-w-2xl animate-fade-up"
+          style={{ animationDelay: "0.2s" }}
+        >
+          Soluciones de automatización no invasivas que{" "}
+          <span className="text-silver font-medium">entregan en días</span> lo que a su
+          departamento de IT le tomaría años. La migración a S/4HANA puede esperar.{" "}
+          <span className="text-silver font-medium">Su operación no puede.</span>
+        </p>
 
-          {/* Social proof metrics */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            {[
-              {
-                icon: Clock,
-                value: "−87%",
-                label: "Reducción en tiempo de reportes",
-                color: "emerald",
-              },
-              {
-                icon: TrendingUp,
-                value: "0 errores",
-                label: "En cruces de datos automatizados",
-                color: "cyan",
-              },
-              {
-                icon: Shield,
-                value: "100%",
-                label: "Compatible con políticas de IT central",
-                color: "emerald",
-              },
-            ].map(({ icon: Icon, value, label, color }) => (
-              <div
-                key={label}
-                className="flex flex-col items-center p-5 rounded-xl bg-white/3 border border-white/8 backdrop-blur-sm"
-              >
-                <div
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${
-                    color === "emerald"
-                      ? "bg-emerald-500/15 text-emerald-400"
-                      : "bg-cyan-500/15 text-cyan-400"
-                  }`}
-                >
-                  <Icon size={20} />
-                </div>
-                <span className="text-2xl font-black text-white mb-1">{value}</span>
-                <span className="text-xs text-slate-500 text-center leading-snug">{label}</span>
-              </div>
-            ))}
-          </div>
+        {/* CTAs */}
+        <div
+          className="mt-10 flex flex-col sm:flex-row items-center gap-4 animate-fade-up"
+          style={{ animationDelay: "0.3s" }}
+        >
+          <a href="#contacto" className="btn-primary">
+            Solicitar Diagnóstico Operativo
+            <ArrowRight size={17} />
+          </a>
+          <a href="#problema" className="btn-ghost">
+            Ver el diagnóstico
+          </a>
+        </div>
+
+        {/* Trust bar */}
+        <div
+          className="mt-16 flex flex-wrap justify-center gap-x-10 gap-y-3 animate-fade-in"
+          style={{ animationDelay: "0.5s" }}
+        >
+          {[
+            "Sin modificar el backend de SAP",
+            "Sin permisos de administrador",
+            "Código 100% auditable",
+          ].map((item) => (
+            <span key={item} className="flex items-center gap-2 text-[13px] text-platinum/60">
+              <span className="w-1 h-1 rounded-full bg-blue-bright/50 flex-shrink-0" />
+              {item}
+            </span>
+          ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll hint */}
       <a
         href="#problema"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 hover:text-slate-400 transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-platinum/30 hover:text-platinum/60 transition-colors"
       >
-        <span className="text-xs tracking-widest uppercase">Descubra el problema</span>
-        <ChevronDown size={18} className="animate-bounce" />
+        <span className="text-[11px] uppercase tracking-widest">Más</span>
+        <ChevronDown size={16} className="animate-bounce" />
       </a>
     </section>
   );
