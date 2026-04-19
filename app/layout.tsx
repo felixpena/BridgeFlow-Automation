@@ -28,6 +28,10 @@ export const metadata: Metadata = {
     description: "Soluciones ágiles para la rigidez de SAP en Latinoamérica.",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon:  [{ url: "/icon", type: "image/png", sizes: "32x32" }],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

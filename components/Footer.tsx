@@ -13,9 +13,9 @@ export default function Footer() {
             <Image
               src="/img/logo.png"
               alt="BridgeFlow Automation"
-              width={144}
-              height={36}
-              className="h-8 w-auto brightness-0 invert opacity-80"
+              width={210}
+              height={60}
+              className="h-auto w-36 md:w-44 object-contain brightness-0 invert opacity-80"
             />
           </a>
           <p className="text-sm leading-relaxed text-slate-500 max-w-xs">
