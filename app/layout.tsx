@@ -3,43 +3,34 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BridgeFlow Automation | Automatización Crítica de Procesos SAP",
+  title: "BridgeFlow Automation | Automatización Crítica SAP",
   description:
-    "Soluciones de automatización no invasivas para superar la rigidez de SAP. Optimice su operación en días, sin esperar años de migración. Especialistas en Latinoamérica.",
+    "Soluciones ágiles para la rigidez de SAP en Latinoamérica. Automatización no invasiva que entrega resultados en días, no años.",
   keywords: [
     "automatización SAP",
-    "SAP automation Latinoamérica",
-    "S/4HANA migration",
+    "SAP Latinoamérica",
+    "S/4HANA",
     "Shadow IT SAP",
     "BridgeFlow Automation",
-    "eficiencia operativa SAP",
-    "automatización procesos críticos",
-    "RPA SAP sin backend",
+    "RPA SAP",
+    "eficiencia operativa",
   ],
-  authors: [{ name: "BridgeFlow Automation" }],
+  authors:  [{ name: "BridgeFlow Automation" }],
   openGraph: {
-    title: "BridgeFlow Automation | Automatización Crítica de Procesos SAP",
-    description:
-      "Soluciones de automatización no invasivas para superar la rigidez de SAP. Optimice su operación en días, sin esperar años de migración. Especialistas en Latinoamérica.",
-    type:   "website",
-    locale: "es_419",
+    title:       "BridgeFlow Automation | Automatización Crítica SAP",
+    description: "Soluciones ágiles para la rigidez de SAP en Latinoamérica.",
+    type:        "website",
+    locale:      "es_419",
   },
   twitter: {
     card:        "summary_large_image",
-    title:       "BridgeFlow Automation | Automatización Crítica de Procesos SAP",
-    description: "Automatización no invasiva sobre SAP. Sin esperar la migración a S/4HANA.",
+    title:       "BridgeFlow Automation | Automatización Crítica SAP",
+    description: "Soluciones ágiles para la rigidez de SAP en Latinoamérica.",
   },
-  robots: {
-    index:  true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className="scroll-smooth">
       <body>{children}</body>

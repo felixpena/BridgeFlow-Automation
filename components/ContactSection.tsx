@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle2, Loader2, ChevronRight } from "lucide-react";
+import { CheckCircle2, Loader2, ChevronRight } from "lucide-react";
 import { sendGAEvent } from "@next/third-parties/google";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -15,7 +15,7 @@ const benefits = [
 
 export default function ContactSection() {
   const [status, setStatus] = useState<Status>("idle");
-  const [form, setForm]     = useState({
+  const [form,   setForm]   = useState({
     nombre:  "",
     cargo:   "",
     empresa: "",
@@ -30,21 +30,19 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
-
     try {
       const res = await fetch("https://formspree.io/f/mrerkvnp", {
         method:  "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body:    JSON.stringify(form),
       });
-
       if (res.ok) {
-        setStatus("success");
         sendGAEvent("event", "generate_lead", {
           event_category: "contact_form",
           empresa:         form.empresa,
           cargo:           form.cargo,
         });
+        setStatus("success");
         setForm({ nombre: "", cargo: "", empresa: "", email: "", proceso: "" });
       } else {
         setStatus("error");
@@ -55,33 +53,20 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contacto" className="relative py-24 lg:py-32 overflow-hidden">
-
-      {/* Background */}
-      <div className="absolute inset-0 bg-canvas" />
-      <div className="absolute inset-0 bg-dots opacity-50" />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(29,111,239,0.07) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(29,111,239,0.18), transparent)" }}
-      />
-
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+    <section id="contacto" aria-labelledby="contacto-heading" className="section-white py-24 lg:py-32">
+      <div className="max-w-6xl mx-auto px-6">
 
         {/* ── Header ── */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="label-chip mb-5 mx-auto w-fit">Solicitar Diagnóstico Operativo</div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-snow leading-tight tracking-tight">
+          <div className="label-pill mb-5 mx-auto w-fit">Solicitar Diagnóstico Operativo</div>
+          <h2
+            id="contacto-heading"
+            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-slate-900 leading-tight tracking-tight"
+          >
             El primer paso cuesta{" "}
-            <span className="text-blue-grad">45 minutos.</span>
+            <span className="text-cyan-600">45 minutos.</span>
           </h2>
-          <p className="mt-5 text-platinum text-lg leading-relaxed">
+          <p className="mt-5 text-slate-500 text-lg leading-relaxed">
             Cuéntenos qué proceso le está costando más tiempo a su equipo.
             Nosotros hacemos el resto.
           </p>
@@ -91,60 +76,61 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
 
           {/* Left — benefits */}
-          <div className="lg:col-span-2 flex flex-col gap-5">
-            <div className="card p-7">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-bright/70 mb-5">
+          <aside className="lg:col-span-2 flex flex-col gap-5" aria-label="Lo que incluye el diagnóstico">
+            <div className="card p-7 bg-white">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5">
                 Lo que incluye
               </p>
               <ul className="flex flex-col gap-4">
                 {benefits.map((b) => (
                   <li key={b} className="flex items-start gap-3">
-                    <CheckCircle2 size={16} className="text-blue-bright mt-0.5 flex-shrink-0" />
-                    <span className="text-[0.875rem] text-silver leading-snug">{b}</span>
+                    <CheckCircle2
+                      size={16}
+                      className="text-cyan-500 mt-0.5 flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span className="text-[0.875rem] text-slate-600 leading-snug">{b}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Mini callout */}
-            <div
-              className="rounded-2xl border border-blue-mid/20 p-6"
-              style={{
-                background: "linear-gradient(135deg, rgba(29,111,239,0.07) 0%, rgba(11,20,38,0.6) 100%)",
-              }}
-            >
-              <p className="text-silver text-[0.875rem] leading-relaxed">
-                <span className="text-snow font-semibold block mb-1">¿Cuánto puede ahorrar?</span>
+            {/* ROI callout */}
+            <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-6">
+              <p className="text-slate-700 text-[0.875rem] leading-relaxed">
+                <strong className="text-slate-900 font-semibold block mb-1">
+                  ¿Cuánto puede ahorrar?
+                </strong>
                 Si un analista dedica 6 horas semanales a un proceso que automatizamos,
                 su empresa recupera{" "}
-                <span className="text-blue-bright font-semibold">300+ horas al año</span>{" "}
+                <strong className="text-cyan-700 font-semibold">300+ horas al año</strong>{" "}
                 de trabajo estratégico.
               </p>
             </div>
-          </div>
+          </aside>
 
           {/* Right — form */}
           <div className="lg:col-span-3">
-            <div className="card p-8 lg:p-10">
+            <div className="card p-8 lg:p-10 bg-white">
 
               {status === "success" ? (
-                /* ── Success state ── */
+                /* ── Success ── */
                 <div className="flex flex-col items-center justify-center text-center py-10 gap-5">
-                  <div className="w-16 h-16 rounded-full bg-blue-dim border border-blue-mid/30 flex items-center justify-center">
-                    <CheckCircle2 size={30} className="text-blue-bright" />
+                  <div className="w-16 h-16 rounded-full bg-cyan-50 border border-cyan-200 flex items-center justify-center">
+                    <CheckCircle2 size={30} className="text-cyan-600" aria-hidden="true" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-extrabold text-snow mb-2">
+                    <h3 className="text-xl font-extrabold text-slate-900 mb-2">
                       Solicitud recibida.
                     </h3>
-                    <p className="text-platinum text-sm max-w-xs mx-auto leading-relaxed">
-                      Revisaremos los detalles de su proceso y le contactaremos en las próximas
-                      48 horas hábiles con una propuesta técnica personalizada.
+                    <p className="text-slate-500 text-sm max-w-xs mx-auto leading-relaxed">
+                      Revisaremos los detalles de su proceso y le contactaremos en las
+                      próximas 48 horas hábiles con una propuesta técnica personalizada.
                     </p>
                   </div>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="text-blue-bright text-sm hover:text-blue-glow underline underline-offset-4 transition-colors"
+                    className="text-cyan-600 text-sm hover:text-cyan-700 underline underline-offset-4 transition-colors font-medium"
                   >
                     Enviar otra consulta
                   </button>
@@ -152,117 +138,125 @@ export default function ContactSection() {
 
               ) : (
                 /* ── Form ── */
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
 
+                  {/* Row 1: Nombre + Cargo */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div className="flex flex-col gap-2">
-                      <label htmlFor="nombre" className="text-[11px] font-semibold uppercase tracking-wider text-platinum/70">
-                        Nombre completo *
+                    <div className="flex flex-col gap-1.5">
+                      <label
+                        htmlFor="nombre"
+                        className="text-[11px] font-semibold uppercase tracking-wider text-slate-500"
+                      >
+                        Nombre completo <span aria-hidden="true" className="text-red-400">*</span>
                       </label>
                       <input
-                        id="nombre"
-                        name="nombre"
-                        type="text"
-                        required
-                        value={form.nombre}
-                        onChange={set("nombre")}
+                        id="nombre" name="nombre" type="text" required
+                        value={form.nombre} onChange={set("nombre")}
                         placeholder="Ej. Ana García"
                         className="field"
+                        autoComplete="name"
                       />
                     </div>
-
-                    <div className="flex flex-col gap-2">
-                      <label htmlFor="cargo" className="text-[11px] font-semibold uppercase tracking-wider text-platinum/70">
-                        Cargo *
+                    <div className="flex flex-col gap-1.5">
+                      <label
+                        htmlFor="cargo"
+                        className="text-[11px] font-semibold uppercase tracking-wider text-slate-500"
+                      >
+                        Cargo <span aria-hidden="true" className="text-red-400">*</span>
                       </label>
                       <input
-                        id="cargo"
-                        name="cargo"
-                        type="text"
-                        required
-                        value={form.cargo}
-                        onChange={set("cargo")}
+                        id="cargo" name="cargo" type="text" required
+                        value={form.cargo} onChange={set("cargo")}
                         placeholder="Ej. Gerente de Operaciones"
                         className="field"
+                        autoComplete="organization-title"
                       />
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="empresa" className="text-[11px] font-semibold uppercase tracking-wider text-platinum/70">
-                      Empresa *
-                    </label>
-                    <input
-                      id="empresa"
-                      name="empresa"
-                      type="text"
-                      required
-                      value={form.empresa}
-                      onChange={set("empresa")}
-                      placeholder="Nombre de su organización"
-                      className="field"
-                    />
+                  {/* Row 2: Empresa + Email */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="flex flex-col gap-1.5">
+                      <label
+                        htmlFor="empresa"
+                        className="text-[11px] font-semibold uppercase tracking-wider text-slate-500"
+                      >
+                        Empresa <span aria-hidden="true" className="text-red-400">*</span>
+                      </label>
+                      <input
+                        id="empresa" name="empresa" type="text" required
+                        value={form.empresa} onChange={set("empresa")}
+                        placeholder="Nombre de su organización"
+                        className="field"
+                        autoComplete="organization"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label
+                        htmlFor="email"
+                        className="text-[11px] font-semibold uppercase tracking-wider text-slate-500"
+                      >
+                        Email corporativo <span aria-hidden="true" className="text-red-400">*</span>
+                      </label>
+                      <input
+                        id="email" name="email" type="email" required
+                        value={form.email} onChange={set("email")}
+                        placeholder="nombre@empresa.com"
+                        className="field"
+                        autoComplete="email"
+                      />
+                    </div>
                   </div>
 
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="email" className="text-[11px] font-semibold uppercase tracking-wider text-platinum/70">
-                      Email corporativo *
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={set("email")}
-                      placeholder="nombre@empresa.com"
-                      className="field"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="proceso" className="text-[11px] font-semibold uppercase tracking-wider text-platinum/70">
-                      Proceso crítico a automatizar *
+                  {/* Proceso */}
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="proceso"
+                      className="text-[11px] font-semibold uppercase tracking-wider text-slate-500"
+                    >
+                      Proceso crítico a automatizar{" "}
+                      <span aria-hidden="true" className="text-red-400">*</span>
                     </label>
                     <textarea
-                      id="proceso"
-                      name="proceso"
-                      required
-                      rows={5}
-                      value={form.proceso}
-                      onChange={set("proceso")}
-                      placeholder="Describa el proceso que más tiempo consume a su equipo. Ej: Cada cierre mensual exportamos el reporte de costos de SAP (transacción KSB1), lo cruzamos con el presupuesto en Excel y generamos un informe de variación. Dos analistas dedican un día completo a esto..."
+                      id="proceso" name="proceso" required rows={5}
+                      value={form.proceso} onChange={set("proceso")}
+                      placeholder="Describa el proceso que más tiempo consume a su equipo. Ej: Cada cierre mensual exportamos el reporte de costos de SAP (KSB1), lo cruzamos con el presupuesto en Excel y generamos un informe de variación. Dos analistas dedican un día completo a esto..."
                       className="field resize-none"
                     />
                   </div>
 
+                  {/* Error message */}
                   {status === "error" && (
-                    <p className="text-[13px] text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+                    <p
+                      role="alert"
+                      className="text-[13px] text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3"
+                    >
                       Ocurrió un error al enviar. Por favor intente nuevamente.
                     </p>
                   )}
 
+                  {/* Submit */}
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="btn-primary justify-center mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="btn-cta justify-center mt-1 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     {status === "loading" ? (
                       <>
-                        <Loader2 size={17} className="animate-spin" />
-                        Enviando solicitud...
+                        <Loader2 size={17} className="animate-spin" aria-hidden="true" />
+                        Enviando solicitud…
                       </>
                     ) : (
                       <>
                         Solicitar Diagnóstico Operativo
-                        <ChevronRight size={17} />
+                        <ChevronRight size={17} aria-hidden="true" />
                       </>
                     )}
                   </button>
 
-                  <p className="text-[12px] text-platinum/35 text-center leading-snug">
-                    Sin compromisos. Sus datos se utilizan exclusivamente para coordinar
-                    la sesión de diagnóstico.
+                  <p className="text-[12px] text-slate-400 text-center leading-snug">
+                    Sin compromisos. Sus datos se utilizan exclusivamente
+                    para coordinar la sesión de diagnóstico.
                   </p>
                 </form>
               )}

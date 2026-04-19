@@ -2,149 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap');
 
-/* ─── Base ─────────────────────────────────────────────── */
+/* ─── Base ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background-color: #040C18;
-  color: #CBD5E1;
+html  { scroll-behavior: smooth; }
+body  {
+  background-color: #ffffff;
+  color: #0F172A;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #040C18; }
-::-webkit-scrollbar-thumb { background: #1E3050; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #1D6FEF; }
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #F8FAFC; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #0891B2; }
 
 /* ─── Selection ─────────────────────────────────────────── */
-::selection { background: rgba(29,111,239,0.25); color: #F8FAFC; }
+::selection { background: rgba(8,145,178,0.15); color: #0F172A; }
 
 /* ─── Utilities ─────────────────────────────────────────── */
 @layer utilities {
 
-  /* Blue gradient text */
-  .text-blue-grad {
-    background: linear-gradient(135deg, #4D9FFF 0%, #93C5FD 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  /* Section alternation */
+  .section-white { background-color: #ffffff; }
+  .section-tint  { background-color: #F8FAFC; }
 
-  /* Subtle dot-grid background */
+  /* Subtle dot grid (very light, decorative) */
   .bg-dots {
-    background-image: radial-gradient(circle, rgba(29,111,239,0.08) 1px, transparent 1px);
-    background-size: 28px 28px;
+    background-image: radial-gradient(circle, rgba(8,145,178,0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
-  /* Hairline top border glow */
-  .border-top-glow::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 10%; right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(29,111,239,0.5), transparent);
-  }
-
-  /* Card glass */
+  /* Apple/Stripe-style card */
   .card {
-    background: linear-gradient(145deg, #0B1426 0%, #0A1120 100%);
-    border: 1px solid #1A2840;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
     border-radius: 16px;
-    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
-
   .card:hover {
-    border-color: rgba(29,111,239,0.35);
-    box-shadow: 0 0 32px rgba(29,111,239,0.08), 0 8px 32px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.06);
+    border-color: #BAE6FD;
     transform: translateY(-3px);
   }
 
-  /* Primary button */
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 32px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #1D6FEF 0%, #0F4C9E 100%);
-    color: #F8FAFC;
-    font-weight: 600;
-    font-size: 0.9375rem;
-    letter-spacing: 0.01em;
-    box-shadow: 0 4px 24px rgba(29,111,239,0.30);
-    transition: box-shadow 0.25s, transform 0.2s, filter 0.2s;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-  }
-
-  .btn-primary:hover {
-    box-shadow: 0 6px 36px rgba(29,111,239,0.50);
-    transform: translateY(-2px);
-    filter: brightness(1.08);
-  }
-
-  /* Ghost button */
-  .btn-ghost {
+  /* Primary CTA — Cyan */
+  .btn-cta {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 13px 28px;
     border-radius: 10px;
+    background-color: #0891B2;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 14px rgba(8,145,178,0.28);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-cta:hover {
+    background-color: #0E7490;
+    box-shadow: 0 6px 20px rgba(8,145,178,0.40);
+    transform: translateY(-1px);
+  }
+  .btn-cta:active { transform: translateY(0); }
+
+  /* Ghost button — outlined */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
     background: transparent;
-    border: 1px solid #1E3050;
-    color: #CBD5E1;
+    border: 1.5px solid #CBD5E1;
+    color: #475569;
     font-weight: 500;
     font-size: 0.9375rem;
     transition: border-color 0.2s, color 0.2s;
-    cursor: pointer;
     text-decoration: none;
+    cursor: pointer;
+  }
+  .btn-outline:hover {
+    border-color: #0891B2;
+    color: #0891B2;
   }
 
-  .btn-ghost:hover {
-    border-color: rgba(29,111,239,0.5);
-    color: #F8FAFC;
-  }
-
-  /* Input field */
-  .field {
-    width: 100%;
-    background: #040C18;
-    border: 1px solid #1A2840;
-    border-radius: 10px;
-    padding: 13px 16px;
-    color: #F8FAFC;
-    font-size: 0.9375rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-  }
-
-  .field::placeholder { color: #334155; }
-
-  .field:focus {
-    border-color: rgba(29,111,239,0.6);
-    box-shadow: 0 0 0 3px rgba(29,111,239,0.12);
-  }
-
-  /* Section label chip */
-  .label-chip {
+  /* Section label pill */
+  .label-pill {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     padding: 4px 14px;
     border-radius: 999px;
-    background: rgba(29,111,239,0.10);
-    border: 1px solid rgba(29,111,239,0.22);
-    color: #4D9FFF;
+    background: rgba(8,145,178,0.08);
+    border: 1px solid rgba(8,145,178,0.20);
+    color: #0891B2;
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
+  }
+
+  /* Form input */
+  .field {
+    width: 100%;
+    background: #ffffff;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #0F172A;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .field::placeholder { color: #94A3B8; }
+  .field:focus {
+    border-color: #0891B2;
+    box-shadow: 0 0 0 3px rgba(8,145,178,0.10);
+  }
+
+  /* Hairline divider */
+  .divider-cyan {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #0891B2, transparent);
+    border: none;
+    opacity: 0.25;
   }
 }

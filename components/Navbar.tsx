@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "El Problema",    href: "#problema"    },
-  { label: "Metodología",    href: "#metodologia" },
-  { label: "Garantías",      href: "#garantias"   },
-  { label: "Contacto",       href: "#contacto"    },
+  { label: "El Problema",  href: "#problema"    },
+  { label: "Metodología",  href: "#metodologia" },
+  { label: "Garantías",    href: "#garantias"   },
+  { label: "Contacto",     href: "#contacto"    },
 ];
 
 export default function Navbar() {
@@ -15,39 +16,40 @@ export default function Navbar() {
   const [menuOpen,  setMenuOpen]  = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 16);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#040C18]/90 backdrop-blur-xl border-b border-[#1A2840]"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100"
+          : "bg-white/80 backdrop-blur-sm"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
         {/* ── Logo ── */}
-        <a href="#" className="flex items-center gap-2.5 group select-none">
-          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-core to-blue-mid flex items-center justify-center shadow-lg shadow-blue-core/30">
-            <Zap size={13} className="text-white" strokeWidth={2.8} />
-          </span>
-          <span className="font-bold text-[15px] tracking-tight text-snow">
-            BridgeFlow
-            <span className="text-blue-grad ml-[3px]">Automation</span>
-          </span>
+        <a href="#" aria-label="BridgeFlow Automation — inicio" className="flex items-center">
+          <Image
+            src="/img/logo.png"
+            alt="BridgeFlow Automation"
+            width={160}
+            height={40}
+            className="h-9 w-auto object-contain"
+            priority
+          />
         </a>
 
         {/* ── Desktop nav ── */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav aria-label="Navegación principal" className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm font-medium text-platinum hover:text-snow transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors duration-200"
             >
               {l.label}
             </a>
@@ -55,15 +57,16 @@ export default function Navbar() {
         </nav>
 
         {/* ── CTA ── */}
-        <a href="#contacto" className="hidden md:inline-flex btn-primary text-sm py-2.5 px-5">
+        <a href="#contacto" className="hidden md:inline-flex btn-cta text-sm py-2.5 px-5">
           Solicitar Diagnóstico
         </a>
 
         {/* ── Hamburger ── */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-platinum hover:text-snow transition-colors"
-          aria-label="Menú"
+          className="md:hidden text-slate-500 hover:text-slate-900 transition-colors"
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -71,29 +74,31 @@ export default function Navbar() {
 
       {/* ── Mobile drawer ── */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0B1426]/98 backdrop-blur-xl border-b border-[#1A2840] px-6 pb-6">
-          <ul className="flex flex-col gap-1 pt-3">
-            {links.map((l) => (
-              <li key={l.href}>
+        <div className="md:hidden bg-white border-b border-slate-100 shadow-lg px-6 pb-6">
+          <nav aria-label="Menú móvil">
+            <ul className="flex flex-col pt-2">
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-3.5 text-sm font-medium text-slate-700 hover:text-cyan-600 border-b border-slate-100 transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+              <li className="pt-5">
                 <a
-                  href={l.href}
+                  href="#contacto"
                   onClick={() => setMenuOpen(false)}
-                  className="block py-3 text-sm font-medium text-platinum hover:text-snow transition-colors border-b border-[#111D33]"
+                  className="btn-cta w-full justify-center"
                 >
-                  {l.label}
+                  Solicitar Diagnóstico
                 </a>
               </li>
-            ))}
-            <li className="pt-4">
-              <a
-                href="#contacto"
-                onClick={() => setMenuOpen(false)}
-                className="btn-primary w-full justify-center text-sm"
-              >
-                Solicitar Diagnóstico
-              </a>
-            </li>
-          </ul>
+            </ul>
+          </nav>
         </div>
       )}
     </header>
