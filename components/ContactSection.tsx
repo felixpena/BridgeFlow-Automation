@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Send, CheckCircle2, Loader2, ChevronRight } from "lucide-react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -18,6 +19,7 @@ export default function ContactSection() {
     nombre:  "",
     cargo:   "",
     empresa: "",
+    email:   "",
     proceso: "",
   });
 
@@ -38,7 +40,12 @@ export default function ContactSection() {
 
       if (res.ok) {
         setStatus("success");
-        setForm({ nombre: "", cargo: "", empresa: "", proceso: "" });
+        sendGAEvent("event", "generate_lead", {
+          event_category: "contact_form",
+          empresa:         form.empresa,
+          cargo:           form.cargo,
+        });
+        setForm({ nombre: "", cargo: "", empresa: "", email: "", proceso: "" });
       } else {
         setStatus("error");
       }
@@ -193,6 +200,22 @@ export default function ContactSection() {
                       value={form.empresa}
                       onChange={set("empresa")}
                       placeholder="Nombre de su organización"
+                      className="field"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="email" className="text-[11px] font-semibold uppercase tracking-wider text-platinum/70">
+                      Email corporativo *
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={set("email")}
+                      placeholder="nombre@empresa.com"
                       className="field"
                     />
                   </div>
