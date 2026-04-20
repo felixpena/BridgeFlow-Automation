@@ -56,11 +56,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* ── CTA ── */}
-        <a href="#contacto" className="hidden md:inline-flex btn-cta text-sm py-2.5 px-5">
-          Solicitar Diagnóstico
-        </a>
-
         {/* ── Hamburger ── */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
