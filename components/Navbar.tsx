@@ -38,7 +38,7 @@ export default function Navbar() {
             alt="BridgeFlow Automation"
             width={210}
             height={60}
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-12 md:h-14 w-auto object-contain"
             priority
           />
         </a>
