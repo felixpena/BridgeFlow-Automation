@@ -36,8 +36,8 @@ export default function Navbar() {
           <Image
             src="/img/logo.png"
             alt="BridgeFlow Automation"
-            width={210}
-            height={60}
+            width={1208}
+            height={311}
             className="h-14 md:h-16 w-auto max-w-[220px] md:max-w-[280px] object-contain"
             priority
           />
