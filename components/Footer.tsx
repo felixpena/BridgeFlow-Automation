@@ -5,18 +5,21 @@ export default function Footer() {
     <footer className="bg-slate-900 text-slate-400">
 
       {/* ── Main strip ── */}
-      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
 
         {/* Brand */}
         <div>
           <a href="#" aria-label="BridgeFlow Automation — inicio" className="inline-block mb-4">
-            <Image
-              src="/img/logo.png"
-              alt="BridgeFlow Automation"
-              width={210}
-              height={60}
-              className="h-auto w-36 md:w-44 object-contain brightness-0 invert opacity-80"
-            />
+            {/* White pill so el logo (fondo blanco) se integra con el footer oscuro */}
+            <span className="inline-flex items-center bg-white rounded-xl px-4 py-2">
+              <Image
+                src="/img/logo.png"
+                alt="BridgeFlow Automation"
+                width={210}
+                height={60}
+                className="h-auto w-28 sm:w-36 md:w-40 object-contain"
+              />
+            </span>
           </a>
           <p className="text-sm leading-relaxed text-slate-500 max-w-xs">
             Automatización no invasiva sobre SAP para empresas en Latinoamérica
@@ -65,7 +68,7 @@ export default function Footer() {
 
       {/* ── Bottom bar ── */}
       <div className="border-t border-slate-800">
-        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[12px] text-slate-600">
             © {new Date().getFullYear()} BridgeFlow Automation. Todos los derechos reservados.
           </p>

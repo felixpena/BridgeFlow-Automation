@@ -29,7 +29,7 @@ export default function Navbar() {
           : "bg-white/80 backdrop-blur-sm"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
 
         {/* ── Logo ── */}
         <a href="#" aria-label="BridgeFlow Automation — inicio" className="flex items-center">
@@ -38,7 +38,7 @@ export default function Navbar() {
             alt="BridgeFlow Automation"
             width={210}
             height={60}
-            className="h-auto w-44 md:w-52 object-contain"
+            className="h-auto w-28 sm:w-40 md:w-52 object-contain"
             priority
           />
         </a>

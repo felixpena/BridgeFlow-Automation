@@ -36,7 +36,7 @@ const pains = [
 export default function PainSection() {
   return (
     <section id="problema" aria-labelledby="problema-heading" className="section-tint py-24 lg:py-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
         <header className="max-w-2xl mb-14">

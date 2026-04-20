@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-dots opacity-60 pointer-events-none" aria-hidden="true" />
 
       {/* ── Content ── */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-20 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 flex flex-col items-center text-center">
 
         {/* Eyebrow */}
         <div className="label-pill mb-8 animate-fade-in" style={{ animationDelay: "0.05s" }}>

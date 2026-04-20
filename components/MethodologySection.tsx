@@ -33,7 +33,7 @@ const pipeline = ["Proceso SAP", "BridgeFlow Layer", "Motor de Automatización",
 export default function MethodologySection() {
   return (
     <section id="metodologia" aria-labelledby="metodologia-heading" className="section-white py-24 lg:py-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14">

@@ -54,7 +54,7 @@ export default function ContactSection() {
 
   return (
     <section id="contacto" aria-labelledby="contacto-heading" className="section-white py-24 lg:py-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
         <div className="text-center max-w-2xl mx-auto mb-14">
